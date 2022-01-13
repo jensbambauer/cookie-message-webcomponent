@@ -14,7 +14,7 @@ $for-phone: 640px;
 :host {
   position: fixed;
   top: 0px;
-  height: 100%;
+  height: 0;
   width: 100%;
   left: 0;
   z-index: 1000;
@@ -61,7 +61,7 @@ $for-phone: 640px;
   transform: translateX(100%);
 }
 .container {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   pointer-events: none;
   display: flex;

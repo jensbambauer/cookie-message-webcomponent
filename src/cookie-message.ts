@@ -65,7 +65,7 @@ export class CookieMessage extends LitElement {
   }
 
   private _initGoogleTag() {
-    if (Cookies.get('cookie_consent_tracking')) {
+    if (Cookies.get('cookie_consent_tracking') === 'true') {
       (function (w: any, d: any, s: any, l: any, i: any) {
         w[l] = w[l] || [];
         w[l].push({

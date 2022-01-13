@@ -7,6 +7,7 @@ import {
   state,
   queryAssignedNodes,
   query,
+  unsafeCSS,
 } from 'lit-element';
 import { styleMap } from 'lit-html/directives/style-map.js';
 import Cookies from 'js-cookie';
@@ -27,6 +28,10 @@ export class CookieMessage extends LitElement {
   buttonAllowSelectionText = 'A';
   @property({ attribute: 'button-allow-all-text' }) buttonAllowAllText = 'B';
   @property({ attribute: 'color' }) color = 'white';
+  @property({ attribute: 'highlight-color' }) highlightColor = 'red';
+  @property({ attribute: 'highlight-text-color' }) highlightTextColor = 'white';
+  @property({ attribute: 'secondary-color' }) secondaryColor = 'blue';
+  @property({ attribute: 'hover-color' }) hoverColor = 'blue';
   @property({ attribute: 'google-tag-id' }) googleTagId = null;
 
   @query('input#tracking')
@@ -36,10 +41,19 @@ export class CookieMessage extends LitElement {
 
   firstUpdated() {
     // create theme
-    this._theme = {
-      backgroundColor: this.backgroundColor,
-      color: this.color,
-    };
+    // this._theme = {
+    //   backgroundColor: this.backgroundColor,
+    //   color: this.color,
+    // };
+
+    this._theme = css`
+      --background-color: ${unsafeCSS(this.backgroundColor)};
+      --color: ${unsafeCSS(this.color)};
+      --highlight-color: ${unsafeCSS(this.highlightColor)};
+      --secondary-color: ${unsafeCSS(this.secondaryColor)};
+      --hover-color: ${unsafeCSS(this.hoverColor)};
+      --highlight-text-color: ${unsafeCSS(this.highlightTextColor)};
+    `;
 
     if (Cookies.get('cookie_consent') === undefined) {
       setTimeout(() => {
